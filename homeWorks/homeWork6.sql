@@ -28,35 +28,35 @@ Country  not in ('UK', 'China');
     select
         sum(order_details.quantity * products.Price) as total_sum
     from order_details
-    JOIN products on order_details.ProductID = products.ProductID;
+    join products on order_details.ProductID = products.ProductID;
 #
 # Вывести данные о заказах (номерзаказа, имяклиента, странаклиента, фамилияменеджера, названиекомпанииперевозчика)
-SELECT
+select
     orders.OrderID,
-    customers.CustomerName AS CustomerName,
-    customers.Country AS CustomerCountry,
-    employees.LastName AS ManagerLastName,
-    shippers.ShipperName AS ShipperName
-FROM
+    customers.CustomerName as CustomerName,
+    customers.Country as CustomerCountry,
+    employees.LastName as ManagerLastName,
+    shippers.ShipperName as ShipperName
+from
     orders
-        JOIN
-    customers ON orders.CustomerID = customers.CustomerID
-        JOIN
-    employees ON orders.EmployeeID = employees.EmployeeID
-        JOIN
-    shippers ON orders.ShipperID = shippers.ShipperID;
+        join
+    customers on orders.CustomerID = customers.CustomerID
+        join
+    employees on orders.EmployeeID = employees.EmployeeID
+        join
+    shippers on orders.ShipperID = shippers.ShipperID;
 
 #
 # Вывести сумму, на которую было отправлено товаров клиентам в Germany
-SELECT
-    SUM(products.Price * order_details.quantity) AS TotalAmountSentToGermany
-FROM
+select
+    SUM(products.Price * order_details.quantity) as TotalAmountSentToGermany
+from
     orders
-        JOIN
-    customers ON orders.CustomerID = customers.CustomerID
-        JOIN
-    order_details ON orders.OrderID = order_details.OrderID
-        JOIN
-    products ON order_details.ProductID = products.ProductID
-WHERE
+        join
+    customers on orders.CustomerID = customers.CustomerID
+        join
+    order_details on orders.OrderID = order_details.OrderID
+        join
+    products on order_details.ProductID = products.ProductID
+where
     customers.Country = 'Germany';
