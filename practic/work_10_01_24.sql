@@ -205,3 +205,15 @@ GROUP BY
 HAVING
     AVG(products.Price) > 40;
 
+# SELECT
+# 		Suppliers.SupplierName,
+# 		AVG(Products.Price) AS avg_price
+# FROM Products
+#
+# JOIN Suppliers ON Products.SupplierID = Suppliers.SupplierID
+#
+# GROUP BY Products.SupplierID
+# HAVING
+# 	avg_price > 40
+#
+# ORDER BY avg_price DESC
