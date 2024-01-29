@@ -27,8 +27,29 @@ GROUP BY
 #
 # Найти количество сотрудников у каждого менеджера. Вывести managerid и employeescnt
 #
+SELECT
+    manager_id,
+    COUNT(employee_id) AS employeescnt
+FROM
+    employees
+GROUP BY
+    manager_id;
+
 # Найти количество сотрудников у каждого менеджера. Вывести firstname,  lastname и employees_cnt
-#
+
+SELECT
+    managers.manager_id,
+    managers.first_name,
+    managers.last_name,
+    COUNT(employees.employee_id) AS employees_cnt
+FROM
+    employees
+        JOIN
+    employees managers ON employees.manager_id = managers.employee_id
+GROUP BY
+    managers.manager_id, managers.first_name, managers.last_name;
+
+
 # Найти максимальную зарплату в каждом департаменте. Вывести departmentid и maxsalary
 SELECT
     department_id,
