@@ -1,0 +1,87 @@
+// 1. Создать БД group_220823
+
+use group_220823
+
+
+// 2. Создать коллекцию users
+
+db.createCollection('users')
+
+
+// 3. Добавить в коллекцию users пользователя (свойства _id, firstname, lastname, age, salary, rating)
+
+db.users.insertOne({
+    _id: 1,
+    firstname: 'Oleg',
+    lastname: 'Ivanov',
+    age: 30,
+    salary: 1000,
+    rating: 4.7
+})
+
+
+// 4. Проверить содержимое коллекции
+
+db.users.find()
+
+// 5. Добавить в коллекцию users еще трех пользователей
+
+db.users.insertMany([
+    {
+        _id: 2,
+        firstname: 'Anna',
+        lastname: 'Petrova',
+        age: 34,
+        salary: 400,
+        rating: 2.6
+    },
+    {
+        _id: 3,
+        firstname: 'Ivan',
+        lastname: 'Sidorov',
+        age: 55,
+        salary: 1600,
+        rating: 4.9
+    },
+    {
+        _id: 4,
+        firstname: 'Anna',
+        lastname: 'Ushanova',
+        age: 39,
+        salary: 1300,
+        rating: 4.3
+    }
+])
+
+db.users.find()
+
+// 6. Вывести всех пользователей с именем Anna
+
+db.users.find({ firstname: 'Anna' })
+
+// ОПЕРАТОРЫ СРАВНЕНИЯ
+// $eq - =
+// $ne - !=
+// $gt - >
+// $gte - >=
+// $lt - <
+// $lte - <=
+// $in - значение соответствует одному из списка
+// $nin - значение не соответствует значениям из списка
+
+// Логические операторы
+
+//  $and - and, и .., и...
+//  $or - or, или..., или..
+//  $not - not, не..
+//  $nor - nor, не (и.. , и...)
+
+db.users.find({age: {$gt:35}})
+
+db.users.find({rating: {$lte : 4.5}})
+
+db.users.find({firstname: {$in: ['Anna', 'Ivan', "Omeljan"]}})
+
+
+db.users.find({age: {$in: [23,30,55,64]}})
+

@@ -1,0 +1,80 @@
+use homeworks
+//1. Создать БД 'homeworks'.
+// В этой бд создать коллекцию workers и заполнить документами со следующими свойствами: id, firstname, lastname, position, salary. Используйте следующие данные:
+//
+// 1 Salomon Samsonov CEO 7000
+// 2 Havrusha Obizjanov Web-developer 5000
+// 3 Opanas Kosogljad Assistant 4500
+// 4 Lilja Jorg Accountant 4500
+// 5 Stepan Paka Assistant 2500
+// 6 Lilja Rubik Accountant 4000
+//
+ db.homeworks.insertMany([
+     {
+         _id: 1,
+         firstname: 'Salomon',
+         lastname: 'Samsonov',
+         position: 'CEO',
+         salary: 7000
+     },
+     {
+         _id: 2,
+         firstname: 'Havrusha',
+         lastname: 'Obizjanov',
+         position: 'Web-developer',
+         salary: 5000
+     },
+     {
+         _id: 3,
+         firstname: 'Opanas',
+         lastname: 'Kosogljad',
+         position: 'Assistant',
+         salary: 4500
+     },
+     {
+         _id: 4,
+         firstname: 'Lilja',
+         lastname: 'Jorg',
+         position: ' Accountant',
+         salary: 4500
+     },
+     {
+         _id: 5,
+         firstname: 'Stepan',
+         lastname: 'Paka',
+         position: 'Assistant',
+         salary: 2500
+     },
+     {
+         _id: 6,
+         firstname: 'Lilja',
+         lastname: 'Rubik',
+         position: ' Accountant',
+         salary: 4000
+     }
+ ])
+
+db.homeworks.find()
+//
+// Вывести из этой коллекции сотрудников у которых зарплата выше 4000.
+
+db.homeworks.find({salary: {$gt: 4000}})
+//
+// Вывести сотрудников, у которых имя входит в список ('Salomon', "Havrusha", 'Lilja')
+
+db.homeworks.find({firstname: {$in: ['Salomon', "Havrusha", 'Lilja']}})
+//
+// Вывести сотрудников из отделов Accountant и Assistant, которые зарабатывают меньше 4500.
+
+db.homeworks.find({
+    $and: [
+        {position: {$in: ["Accountant", "Assistant"] }},
+        {salary: {$lt:4500}}
+    ]
+})
+//
+// Из коллекции удалить сотрудников с именем 'Lilja'.
+
+db.homeworks.deleteMany({firstname: 'Lilja'})
+
+db.homeworks.find()
