@@ -75,6 +75,7 @@ db.homeworks.find({
 //
 // Из коллекции удалить сотрудников с именем 'Lilja'.
 
-db.homeworks.deleteMany({firstname: 'Lilja'})
+db.homeworks.deleteOne({firstname: 'Lilja'})
 
 db.homeworks.find()
+
